@@ -20,6 +20,8 @@ SSH_PORT=$(($RANDOM%(65535-1000+1)+1000))
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 sed -i "s/#Port 22/Port $SSH_PORT/" /etc/ssh/sshd_config
 
+systemctl restart ssh.service
+
 ###FIREWALL
 sed -i "s/IPV6=yes/IPV6=no/" /etc/default/ufw
 ufw default deny incoming
